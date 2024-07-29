@@ -1,7 +1,9 @@
 import Container from 'react-bootstrap/Container';
+import noxus from "../assets/img/Logo.jpeg";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { CarWidget } from "./CartWidget"
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -10,16 +12,14 @@ export const NavBar = ()=> {
         <>
             <Navbar bg="light" data-bs-theme="light">
                 <Container>
-                <Navbar.Brand href="#home">NOXUS</Navbar.Brand>
+                <Navbar.Brand as={NavLink} to="/"><img src={noxus} height={40} alt="logo noxus" /></Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Inicio</Nav.Link>
-                    <Nav.Link href="#features">Productos</Nav.Link>
-                    <Nav.Link href="#pricing">Politicas</Nav.Link>
+                    <Nav.Link as={NavLink} to="/category">Productos</Nav.Link>
+                    <Nav.Link as={NavLink} to="/detalles">Detalles</Nav.Link>
                 </Nav>
                 <CarWidget/>
                 </Container>
             </Navbar>
-
-    </>
+        </>
     )
 }
