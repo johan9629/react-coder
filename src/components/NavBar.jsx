@@ -14,8 +14,8 @@ export const NavBar = ()=> {
                 <Container>
                 <Navbar.Brand as={NavLink} to="/"><img src={noxus} height={40} alt="logo noxus" /></Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link as={NavLink} to="/category">Productos</Nav.Link>
-                    <Nav.Link as={NavLink} to="/detalles">Detalles</Nav.Link>
+                    <Nav.Link as={NavLink} to="/category/caballero">Caballero</Nav.Link>
+                    <Nav.Link as={NavLink} to="/category/dama">Dama</Nav.Link>
                 </Nav>
                 <CarWidget/>
                 </Container>

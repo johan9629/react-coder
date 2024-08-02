@@ -1,16 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { NavBar } from "./components/NavBar";
-import { ItemListCon } from "./components/ItemListCon";
+import { ItemListContainer } from "./components/ItemListContainer";
+import { ItemDetailContainer } from "./components/ItemDetailContainer"
 
 function App() {
   return (
     <BrowserRouter>
       <NavBar/>
       <Routes>
-        <Route path="/" element={<ItemListCon greeting="Bienvenidos a Noxus"/>}></Route>
-        <Route path="/category" element={"Bienvenidos a Noxus"}></Route>
-        <Route path="/detalles" element={<h1>Detalles</h1>}></Route>
+        <Route path="/" element={<ItemListContainer/>}></Route>
+        <Route path="/category/:id" element={<ItemListContainer/>}></Route>
+        <Route path="/item/:id" element={<ItemDetailContainer/>}></Route>
         <Route path="*" element={<h1>404</h1>}></Route>
       </Routes>
     </BrowserRouter>

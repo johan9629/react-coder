@@ -10,48 +10,56 @@ import versace from "../assets/img/versace.jpeg"
 export default[
     {
         "id": 1,
+        "categoria": "caballero",
         "nombre": "Calvin",
         "img": calvin2,
         "precio": "19000"
     },
     {
         "id": 2,
+        "categoria": "dama",
         "nombre": "Nike",
         "img": nike,
         "precio": "15000"
     },
     {
         "id": 3,
+        "categoria": "caballero",
         "nombre": "Tommy",
         "img": tommy,
         "precio": "29900"
     },
     {
         "id": 4,
+        "categoria": "caballero",
         "nombre": "Nike",
         "img": nike2,
         "precio": "39900"
     },
     {
         "id": 5,
+        "categoria": "caballero",
         "nombre": "Calvin",
         "img": calvin,
         "precio": "19000"
     },
     {
         "id": 6,
+        "categoria": "caballero",
         "nombre": "Diesel",
         "img": diesel,
         "precio": "22000"
     },
     {
         "id": 7,
+        "categoria": "dama",
         "nombre": "Gucci",
         "img": gucci,
         "precio": "49900"
     },
     {
         "id": 8,
+        "categoria": "caballero",
         "nombre": "Versace",
         "img": versace,
         "precio": "49900"
