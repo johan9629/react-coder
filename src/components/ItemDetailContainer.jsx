@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 import Card from "react-bootstrap/Card";
+import { ItemCount } from "./ItemQuantitySelector";
 export const ItemDetailContainer = () => {
     const [item, setItem] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -19,21 +20,12 @@ export const ItemDetailContainer = () => {
             .then((snapshot) => {
                 setItem({ id: snapshot.id, ...snapshot.data() });
             })
-            .finally(() => setLoading(false));        
-        
-        console.log(item);
-        /*
-        new Promise((res,rej) => {
-            setTimeout(() => res(data), 2000)
-        })
-        .then(response => {
-                const item = response.find( items => items.id === Number(id));
-                setProduct(item);
-        })
-        .finally(()=> setLoading(false));
-        */
+            .finally(() => setLoading(false));
     },[id]);
+
     if (loading) return <Container className="mt-4">Cargando.... </Container>;
+    console.log(item);
+    if (!item.descripcion) return <Container className="mt-4"> No existe el producto</Container>
     
     return (
         <>
@@ -45,6 +37,7 @@ export const ItemDetailContainer = () => {
                 <Card.Text>
                             {item.descripcion} 
                 </Card.Text>
+                <ItemCount/>
         </Container>
     </>
 

@@ -34,21 +34,7 @@ export const ItemListContainer = () => {
                 );
             })
             .finally(() => setLoading(false));
-        /*
-        new Promise((res,rej) => {
-            setTimeout(() => res(data), 2000)
-        })
-        .then(response => {
-            if(!id){
-                setProducts(response)
-            } else {
-                const filtro = response.filter( items => items.categoria === id);
-                setProducts(filtro);
-            }
-            
-        })
-        .finally(()=> setLoading(false));
-        */
+
     },[id]);
     console.log(products)
     if (loading) return <Container className="mt-4">Cargando.... </Container>;
