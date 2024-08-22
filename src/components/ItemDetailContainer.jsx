@@ -1,16 +1,28 @@
 import { useState, useEffect } from "react";
-
-import data from "../data/productos.js";
+import { getFirestore, getDoc, doc } from "firebase/firestore";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 import Card from "react-bootstrap/Card";
 export const ItemDetailContainer = () => {
-    const [product, setProduct] = useState(null);
+    const [item, setItem] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const { id } = useParams();
+
     useEffect(() => {
+
+        const db = getFirestore();
+        const refDoc = doc(db,"items", id);
+
+        getDoc(refDoc)
+            .then((snapshot) => {
+                setItem({ id: snapshot.id, ...snapshot.data() });
+            })
+            .finally(() => setLoading(false));        
+        
+        console.log(item);
+        /*
         new Promise((res,rej) => {
             setTimeout(() => res(data), 2000)
         })
@@ -19,21 +31,19 @@ export const ItemDetailContainer = () => {
                 setProduct(item);
         })
         .finally(()=> setLoading(false));
+        */
     },[id]);
     if (loading) return <Container className="mt-4">Cargando.... </Container>;
     
     return (
         <>
-        <Container className="mt-04" style={{ paddingTop: "3rem" }}>
-                <Card className="d-block" style={{ width: "20rem", margin: "0.5rem" }}>
-                    <Card.Img variant="top" alt={product.nombre} src={product.img} height="600" />
-                    <Card.Body>
-                        
-                    </Card.Body>
+        <Container className="mt-04" style={{ padding: "3rem 0", width: "20rem"}}>
+                <Card className="d-block" style={{ margin: "auto" }}>
+                    <Card.Img variant="top" alt={item.categoria} src={item.imagen} height="600" />
                 </Card>
-                <Card.Title>{product.nombre}</Card.Title>
+                <Card.Title > Camisetas {item.categoria}</Card.Title>
                 <Card.Text>
-                            Camisetas marca {product.nombre} de la mejor calidad en ceda fría
+                            {item.descripcion} 
                 </Card.Text>
         </Container>
     </>

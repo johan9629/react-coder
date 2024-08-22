@@ -1,17 +1,40 @@
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-
 import Card from "react-bootstrap/Card";
-import data from "../data/productos.js";
 import { Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
+import {
+    getFirestore,
+    getDocs,
+    where,
+    query,
+    collection
+} from "firebase/firestore";
 
 export const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const { id } = useParams();
+
     useEffect(() => {
+
+        const db = getFirestore();
+        const refCollection = !id
+            ? collection(db, "items")
+            : query(collection(db,"items"),where("categoria","==", id));
+
+
+        getDocs(refCollection)
+            .then((snapshot) => {
+                setProducts(
+                    snapshot.docs.map((doc) => {
+                        return {id: doc.id, ...doc.data()};
+                    })
+                );
+            })
+            .finally(() => setLoading(false));
+        /*
         new Promise((res,rej) => {
             setTimeout(() => res(data), 2000)
         })
@@ -25,6 +48,7 @@ export const ItemListContainer = () => {
             
         })
         .finally(()=> setLoading(false));
+        */
     },[id]);
     console.log(products)
     if (loading) return <Container className="mt-4">Cargando.... </Container>;
@@ -35,11 +59,11 @@ export const ItemListContainer = () => {
             <Container className="d-flex flex-wrap justify-content-evenly" style={{ paddingTop: "3rem" }}>
                 {products.map(product => (
                     <Card key={product.id} style={{ width: "18rem", margin: "0.5rem" }}>
-                        <Card.Img variant="top" alt={product.nombre} src={product.img} height="400" />
-                        <Card.Body>
-                            <Card.Title>{product.nombre}</Card.Title>
+                        <Card.Img variant="top" alt={product.categoria} src={product.imagen} height="400" />
+                        <Card.Body className="d-flex flex-column justify-content-between">
+                            <Card.Title>Camisetas {product.categoria}</Card.Title>
                             <Card.Text>
-                                Camisetas marca {product.nombre} de la mejor calidad en ceda fría
+                                {product.descripcion}
                             </Card.Text>
                             <Link to={`/item/${product.id}`}><Button variant="primary">Ver producto</Button></Link>
                         </Card.Body>
