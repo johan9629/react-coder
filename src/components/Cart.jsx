@@ -64,16 +64,16 @@ export const Cart = () => {
                 <hr />
                     <form>
                         <div>
-                            <label>Nombre</label>
-                            <input value={formulario.nombre} onChange={handleChange} name="nombre"/>
+                            <label htmlFor="nombre">Nombre</label>
+                            <input value={formulario.nombre} onChange={handleChange} name="nombre" id="nombre"/>
                         </div>
                         <div>
-                            <label>Correo</label>
-                            <input value={formulario.correo} onChange={handleChange} name="correo"/>
+                            <label htmlFor="correo">Correo</label>
+                            <input value={formulario.correo} onChange={handleChange} name="correo" id="correo"/>
                         </div>
                         <div>
-                            <label>Celular</label>
-                            <input value={formulario.celular} onChange={handleChange} name="celular"/>
+                            <label htmlFor="celular">Celular</label>
+                            <input value={formulario.celular} onChange={handleChange} name="celular" id="celular"/>
                         </div>
                         <Button onClick={handleOrder}>Comprar</Button>
                     </form>
