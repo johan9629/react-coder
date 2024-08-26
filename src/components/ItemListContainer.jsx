@@ -36,7 +36,7 @@ export const ItemListContainer = () => {
             .finally(() => setLoading(false));
 
     },[id]);
-    console.log(products)
+    
     if (loading) return <Container className="mt-4">Cargando.... </Container>;
     if (products.length === 0) return <Container className="mt-4"> No se encontraron productos</Container>
     

@@ -1,7 +1,11 @@
 import carrito from "../assets/img/carrito.png"
-export const CarWidget = () => (
-    <>
+import { Link } from "react-router-dom";
+
+export const CarWidget = () => {
+    return (
+    <Link to="/cart">
         <img src={carrito} height={30} />
-        <span>5</span>
-    </>
-); 
+        <span>1</span>
+    </Link>
+    )
+}; 
